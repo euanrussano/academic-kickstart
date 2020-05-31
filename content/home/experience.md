@@ -22,7 +22,7 @@ date_format = "Jan 2006"
   company = "E-Sophia"
   company_url = ""
   location = "Rio de Janeiro"
-  date_start = "2019=05-02"
+  date_start = "2019-05-02"
   date_end = ""
   description = """
   Responsibilities include:
