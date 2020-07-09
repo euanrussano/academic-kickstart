@@ -28,7 +28,8 @@ date_format = "Jan 2006"
   Responsibilities include:
   
   * Advisoring
-  * Project Managing
+  * Project Management
+  * Research Consulting
   
   """
 
@@ -39,6 +40,59 @@ date_format = "Jan 2006"
   location = "Massachusetts"
   date_start = "2018-01-01"
   date_end = ""
-  description = """Teaches Python, R, Data Science and Machine Learning as main subjects."""
+  description = """
+  Tutor on a variety of disciplines such as:
+  
+  * Python
+  * R
+  * Java
+  * Data Science
+  * Machine Learning
+  
+  """
+  
+  [[experience]]
+  title = "Research Assistant"
+  company = "Universität Duisburg Essen"
+  company_url = "https://www.uni-due.de/wasserbau/index.php"
+  location = "Essen, NRW, Germany"
+  date_start = "2014-09-01"
+  date_end = "2017-09-01"
+  description = """
+  Research Assistant (PhD) on the project:
+  
+  *Grey-box models for flood forecasting and control*
+  (https://duepublico2.uni-due.de/receive/duepublico_mods_00044991)
+  Supervisor: Prof. Dr-Ing. André Niemann
+  Co-supervisor: Dirk Schwanenberg
+  
+  Key words:
+  * Flow routing
+  * Grey-box model
+  * Artificial Neural Network
+  
+  """
+  
+  [[experience]]
+  title = "Research Assistant"
+  company = "Universidade Federal Rural do Rio de Janeiro"
+  company_url = "http://portal.ufrrj.br/"
+  location = "Seropédica, RJ, Brazil"
+  date_start = "2012-03-01"
+  date_end = "2014-03-11"
+  description = """
+  Research Assistant (Msc.) on the project:
+  
+  *Loss circulation control during oil well drilling*
+  (https://tede.ufrrj.br/jspui/handle/jspui/3076#preview-link0)
+  
+  Supervisor: Prof. Dr. Márcia Peixoto Vega Domiciano
+  
+  Key words:
+  * Annulus bottom-hole pressure control
+  * Lost Circulation
+  * Control Structure Reconfiguration
+  
+  """
 
 +++
