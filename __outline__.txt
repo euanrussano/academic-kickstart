@@ -1,0 +1,161 @@
+Foundations of Mathematics for Machine Learning
+ - with applications in Python, R, Java and Julia
+Section 1 - The Basics
+	Chapter 1 - What is Machine Learning? (mlpp)
+		Definition
+		Classification of ML problems
+			Supervised Learning
+			Unsupervised Learning
+			Reinforcement Learning
+		Fundamental concepts
+			Parametric and non-parametric models
+			Overfitting
+			
+	Chapter 2 - Linear Algebra (mml-book)
+		Introduction
+		Matrices and vectors
+		Systems of Linear Equations
+		Solving systems of Linear Equations
+		Vector Space
+		Decomposition of Matrices
+			Determinant
+			Eigenvalues and Eigenvectors
+			Cholesky decomposition
+			Eigendecomposition
+			Singular value decomposition
+			
+		
+	Chapter 3 - Probability for Computer Scientists (mlpp)
+		Introduction to Probability Theory
+		Probability of Discrete Random Variables
+		Probability of Continuous Random Variables
+		Probability of Union of Events
+		Joint Probability
+		Conditional Probability
+		Bayes Rule
+		Independence and conditional independence
+		Descriptive Statistics
+			Quantiles
+			Mean and variance
+		Discrete distributions
+			Binomial and Multinomial distribution
+			Bernoulli and Multinoulli distribution
+			Poisson distribution
+			Empirical distribution
+		Continuous distributions
+			Normal (Gaussian distribution)
+			Degenerate pdf
+			Laplace distribution
+			Gamma distribution
+			Beta distribution
+			Pareto distribution
+		Joint probability distribution
+			Covariance and correlation
+			Multivariate Gaussian distribution
+			Multivariate Student t distribution
+			Dirichlet distribution
+		Monte Carlo approximation
+	
+	Chapter 4 - Calculus for Machine Learning (mml-book)
+		Differentiation of Univariate Function
+		Gradient and partial differentiation
+		Backpropagation
+		Higher-order derivatives
+		Linearization
+		
+	Chapter 5 - Optimization (mml-book)
+		Unconstrained optimization
+		Constrained optimization
+		Gradient Descent 
+		Stochastic Gradient Descent
+		Constrained optimization using Lagrange Multipliers
+		Linear Programming
+		Quadratic Programming
+
+Section 2 - Machine Learning Algorithms
+
+	Chapter 6 - Generative Models (mlpp)
+		Introduction
+		Bayes learning
+			Likelihood
+			Prior
+			Posterior
+		Beta-binomoal
+			Likelihood
+			Prior
+			Posterior
+		Dirichlet-multinomial model
+			Likelihood
+			Prior
+			Posterior
+		Naive Bayes model
+			Training
+			Prediction
+			Log-sum-exp trick
+			Mutual information using NB
+			Document classification
+	
+	Chapter 7 - Linear Regression
+		Introduction
+		Model structure
+		Maximum likelihood estimation
+		Robust linear regression
+		Ridge
+		Lasso
+		Bayesian linear regression
+	Chapter 8 - Dimensionality Reduction with PCA (mml-book)
+		Introduction
+		The perspective of maximum variance
+		The perspective of projection
+		Eigenvector and Eigenvalues
+		PCA for categorical data (mlpp)
+	Chapter 9 - Logistic Regression
+		Introduction
+		Model structure
+		Maximum likelihood estimation
+			Gradient Descent
+			Newton's method
+		Bayesian logistic regression
+			Laplace approximation
+			Gaussian approximation
+		Online learning and stochastic optimization
+	Chapter 10 - Linear Discriminant Analysis
+	Chapter 11 - K Nearest Neighbors
+	Chapter 12 - Nonlinear Regression
+		Regression Splines
+		Smoothing Splines
+	Chapter 13 - Bayes Nets
+	Chapter 14 - Gaussian Mixture Models
+	Chapter 15 - Tree-based models
+	Chapter 16 - Support vector machines
+	Chapter 17 - Clustering
+		Introduction
+		K-Means
+		Spectral Clustering
+
+Section 3 - Beyond The Foundations
+	Chapter 18 - Monte Carlo Inference
+		Introduction
+		Sampling from standard distributions
+		Rejection sampling
+		Importance sampling
+		Particle filtering
+		Rao-Blackwellsed particle filtering
+	Chapter 19 - Markov and Hidden Markov Models
+	Chapter 20 - Markov random fields
+	
+Section 4 - Ariticial Inteligence (CS221)
+	Chapter 21 - Overview 
+		Introduction
+		Concepts in AI
+			Agents
+			State-based models
+			Variable-based models
+			
+	
+
+20 pages/chapter?
+
+
+mml-book - Mathematics for Machine Learning (Deisenroth et al., 2020)
+mlpp - Machine Learnign A Probabilistic Perspective
