@@ -1,6 +1,6 @@
 ---
 # Display name
-title: Euan Russano
+title: Euan Russano, PhD
 
 # Username (this should match the folder name)
 authors:
@@ -73,4 +73,4 @@ user_groups:
 - Visitors
 ---
 
-Euan Russano is the founder and chief consultant at E-Sophia. He teaches artificial intelligence, machine learning, python and related subjects since 2017. His research interests include process modeling and control, process performance optimization and artificial intelligence.
+Euan Russano is a chemical engineer, founder and chief consultant at E-Sophia. He teaches **artificial intelligence**, **machine learning**, **python** and related subjects since 2017. His research interests include process modeling and control, process performance optimization and artificial intelligence.
