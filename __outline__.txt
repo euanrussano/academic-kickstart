@@ -26,7 +26,7 @@ Section 1 - The Basics
 			
 		
 	Chapter 3 - Probability for Computer Scientists (mlpp)
-		Introduction to Probability Theory
+		Introduction to Probability Theory (intro_prob.md ~1000w)
 		Probability of Discrete Random Variables
 		Probability of Continuous Random Variables
 		Probability of Union of Events
@@ -151,7 +151,11 @@ Section 4 - Ariticial Inteligence (CS221)
 			Agents
 			State-based models
 			Variable-based models
-			
+
+Section 5 - Applications
+	Recommender System		
+		https://realpython.com/build-recommendation-engine-collaborative-filtering/#:~:text=Collaborative%20filtering%20is%20a%20technique,similar%20to%20a%20particular%20user.
+		
 	
 
 20 pages/chapter?

@@ -16,8 +16,8 @@ draft: false
 # To use, add an image named `featured.jpg/png` to your page's folder.
 # Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 image:
-  caption: ""
-  focal_point: ""
+  caption: "Image by Pixabay"
+  focal_point: "Smart"
   preview_only: false
 
 # Projects (optional).
@@ -28,19 +28,19 @@ image:
 projects: []
 ---
 
-# Overview
+## Overview
 
 It can be said that probability is one of the foundations of **machine learning**, together with linear algebra and calculus. In this post I would like to provide a basic description of what probability means in an intuitive sense, followed by some essential concepts in probability theory.
 
 Probability is all about dealing with events which are not certain, they may happen or they may not happen. In some situations it is linked to terms such as luck, chance or risk. However, as a field of mathematics, probability is not a magical or obscure concept. On the contrary, it provides hte necessary tools to measure uncertainty of events and to investigate them based on reasoning.
 
-# A simple example: Coin toss
+## A simple example: Coin toss
 
 Let's start this explanation with a simple example. Consider that you toss a coin. When the coin lands, will it show head or tails? Well we can not know for sure. What we know from the coin is that the number of possible events $E$ are 2: either we get tails or we get head. Here we bring in the assumption that there is no other event possible, like the coin will not land vertically, not facing any side. Another assumption we may take in such case is that both head or tails may be equally likely, that means the weight of the coin is homogenous so it does not favor a particular side.
 
 When one toss the coin, what happens is 1 event, out of 2 possible events. Say that one toss the same coin 10 times, so out of $2 \cdot 10=20$ possible events, each time one gets $1*10=10$ event. So the probability (chance) that one gets a head, when he could get a head or tails equally likely, is $1/2 = 0.5$ or $50\%$. That's the probability of getting a head (or tails) when tossing a coin. We can also think that as, for every 100 throws, one will get *likely* 50 heads (or tails).
 
-# Probability of an event
+## Probability of an event
 
 From the example described above, we can see that probability $P(X)$ for equally likely events can be stated as the number of times a certain event $X$ happens (where $X$ could be to get head in coin toss), divided by the total number of possible events. This will always be a value in the range between 0 and 1. If the event is impossible, then $P(X) = 0$. If the event is certain then $P(X) = 1$.
 
@@ -78,7 +78,7 @@ $$
 
 In certain cases, the probability of an event is expressed in terms of the odds or chance of the event. Though it refers to the same idea, the way it is expressed differs a bit. Odds are expressed a ratio between wins (occurence) to losses (non-ocurrence). In that case, the odds or likelihood of obtaining a value of 2 in the roll of a die can be written as 1:5 for 1 win and 5 losses.
 
-# Frequentist View x Bayesian View
+## Frequentist View x Bayesian View
 
 To introduce the concept of probability in this article we have viewed it from a **Frequentist approach**. In this, probability is an indication of frequency of events after multiple runs. As an example, if a coin is tossed multiple times, it is expected to land tails about half of the time.
 
@@ -86,7 +86,7 @@ A different but less intuitive view of probability comes from the **Bayesian vie
 
 Bayesian view is more subjetive, relying sometimes in information obtained previously but also on certain assumptions and beliefs over a probability space. Still, is shows a clear advantage over the frequentist approach, since one can assign probabilities to very rare events that may not have been observed before, something which can not be done using frequentist approach.
 
-# Summary
+## Summary
 
 **Probability** is a mathematical concept used to quantify and measure uncertainy. It provides the formal rules tools to  determine the likelihood of an event based on the certain propositions.
 
@@ -94,9 +94,9 @@ An **event $E$** consists in the occurence which a probability is obtained. It i
 
 Though in this article we talked mostly about equally likely events, that's not always the case. In face, this is just one specific case among all possible **probability functions**. But we will see more about that
 
-# Further reading
+## Further reading
 
-The following literature provides informatio dive deeper into this topic.
+The following literature provides information to dive deeper into this topic.
 
 [Machine Learning - A Probabilistic Perspective](https://www.amazon.com/Machine-Learning-Probabilistic-Perspective-Computation/dp/0262018020)
 
