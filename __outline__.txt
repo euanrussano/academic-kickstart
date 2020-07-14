@@ -27,7 +27,7 @@ Section 1 - The Basics
 		
 	Chapter 3 - Probability for Computer Scientists (mlpp)
 		Introduction to Probability Theory (intro_prob.md ~1000w)
-		Probability of Discrete Random Variables
+		Probability of Discrete Random Variables (prob_discr_cont)
 		Probability of Continuous Random Variables
 		Probability of Union of Events
 		Joint Probability
