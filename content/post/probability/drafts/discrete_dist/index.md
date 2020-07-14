@@ -64,7 +64,9 @@ means 1 out of 6, or $1/6 \approx 0.167$. Since each value is equally possible, 
 
 As an example, the Figure below illustrates the distribution of a single roll of die. Since all the probabilities $p(X)$ hold the same value, this is called an uniform distribution.
 
-![discrete.png](C:\Users\eruss\Documents\website\academic-kickstart\content\post\prob_discr_cont\discrete\discrete.png)
+
+
+![discrete.png](C:\Users\eruss\Documents\website\academic-kickstart\content\post\probability\drafts\discrete_dist\discrete\discrete.png)
 
 Figure 1 - The distribution of single roll of die, a discrete random set. All the discrete events in $\chi$ have the same $p(X)=1/6$, so this is a uniform distribution.
 
@@ -147,11 +149,28 @@ Calculating the value of $p(X)$ for the other possible events (e.g 1 girl per gr
 
 The figure below illustrates this case, clearly revealing that this distribution differs from the uniform one, were all possible events have the same "chance" of occurring.
 
-![student.png](C:\Users\eruss\Documents\website\academic-kickstart\content\post\prob_discr_cont\student\student.png)
+
+
+![student.png](C:\Users\eruss\Documents\website\academic-kickstart\content\post\probability\drafts\discrete_dist\student\student.png)
 
 In the next post we will see some most common discrete distributions.
 
-
 ## Summary
 
+A **discrete random variable** $X$ is a value draw from a finite, countable set $\chi$. This value is obtained from the set with a probability $p(X)$, which may be equal for any $X \in \chi$ (uniform distribution) or it may differ according the specific distribution function.
+
+Discrete random variables are used in Machine Learning to describe discrete variables, such as **categorical** ones, or **integer** variables. Examples of such are:
+
+- The numbers of bathrooms in a house;
+
+- Weather condition (sunny, rainy, snowy, etc )
+
+- Cancer diagnosis (Malignant, Benign)
+
 ## Further Reading
+
+[Machine Learning - A Probabilistic Perspective](https://www.amazon.com/Machine-Learning-Probabilistic-Perspective-Computation/dp/0262018020)
+
+[Definition of Discrete Random Variables - Hacker Earth](https://www.hackerearth.com/pt-br/practice/machine-learning/prerequisites-of-machine-learning/discrete-random-variables/tutorial/)
+
+[Discrete Random Variables - Brilliant Wiki]([Discrete Random Variables - Definition | Brilliant Math &amp; Science Wiki](https://brilliant.org/wiki/discrete-random-variables-definition/))
