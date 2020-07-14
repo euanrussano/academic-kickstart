@@ -1,8 +1,6 @@
 [build]
   command = "hugo --gc --minify -b $URL"
-#  publish = "public"
-  publish = "dist"
-  command = "yarn build"
+  publish = "public"
   functions = "lambda" # netlify-lambda reads this
 
 [build.environment]
