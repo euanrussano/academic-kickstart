@@ -10,7 +10,7 @@ categories: ["Basics of Machine Learning"]
 date: 2020-07-11T18:22:20-03:00
 lastmod: 2020-07-11T18:22:20-03:00
 featured: false
-draft: true
+draft: false
 
 # Featured image
 
