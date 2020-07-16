@@ -10,7 +10,7 @@ categories: ["Basics of Machine Learning"]
 date: 2020-07-11T18:22:20-03:00
 lastmod: 2020-07-11T18:22:20-03:00
 featured: false
-draft: true
+draft: false
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
@@ -28,7 +28,7 @@ image:
 projects: []
 ---
 
-## Introduction
+## Overview
 
 Hello! In this post we will go over the concept of discrete random variables in the context of Probability Theory. How is this concept relevant for fields such as Machine Learning and Artificial Intelligence? Actually understanding it is vital for Machine Learning, since it provides some insight on the **distribution** of discrete variables, such as categorical ones. These distributions can be translated to more or less the behavior of a variable, so it can be statistically estimated.
 
@@ -64,9 +64,7 @@ means 1 out of 6, or $1/6 \approx 0.167$. Since each value is equally possible, 
 
 As an example, the Figure below illustrates the distribution of a single roll of die. Since all the probabilities $p(X)$ hold the same value, this is called an uniform distribution.
 
-
-
-![discrete.png](C:\Users\eruss\Documents\website\academic-kickstart\content\post\probability\drafts\discrete_dist\discrete\discrete.png)
+{{< figure src="./discrete/discrete.png" title="Figure 1 - The distribution of single roll of die, a discrete random set. All the discrete events in $\chi$ have the same $p(X)=1/6$, so this is a uniform distribution." >}}
 
 Figure 1 - The distribution of single roll of die, a discrete random set. All the discrete events in $\chi$ have the same $p(X)=1/6$, so this is a uniform distribution.
 
@@ -149,9 +147,7 @@ Calculating the value of $p(X)$ for the other possible events (e.g 1 girl per gr
 
 The figure below illustrates this case, clearly revealing that this distribution differs from the uniform one, were all possible events have the same "chance" of occurring.
 
-
-
-![student.png](C:\Users\eruss\Documents\website\academic-kickstart\content\post\probability\drafts\discrete_dist\student\student.png)
+{{< figure src="./student/student.png" title="Figure 2 - Distribution of students." >}}
 
 In the next post we will see some most common discrete distributions.
 
@@ -171,6 +167,6 @@ Discrete random variables are used in Machine Learning to describe discrete vari
 
 [Machine Learning - A Probabilistic Perspective](https://www.amazon.com/Machine-Learning-Probabilistic-Perspective-Computation/dp/0262018020)
 
-[Definition of Discrete Random Variables - Hacker Earth](https://www.hackerearth.com/pt-br/practice/machine-learning/prerequisites-of-machine-learning/discrete-random-variables/tutorial/)
+[Definition of Discrete Random Variables - Hacker Earth](https://www.hackerearth.com/en-us/practice/machine-learning/prerequisites-of-machine-learning/discrete-random-variables/tutorial/)
 
 [Discrete Random Variables - Brilliant Wiki]([Discrete Random Variables - Definition | Brilliant Math &amp; Science Wiki](https://brilliant.org/wiki/discrete-random-variables-definition/))
