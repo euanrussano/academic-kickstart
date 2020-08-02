@@ -8,9 +8,9 @@ authors: []
 tags: ["Probability", "Machine Learning"]
 categories: ["Basics of Machine Learning"]
 date: 2020-07-25T19:26:20-03:00
-lastmod: 2020-25-11T19:26:20-03:00
+lastmod: 2020-08-02T19:26:20-03:00
 featured: false
-draft: true
+draft: false
 
 # Featured image
 
@@ -94,9 +94,15 @@ John will have an important event at work tomorrow and he can't be late for it. 
 What are the chances that he arrives at work on time tomorrow?
 Assume that:
 $$
-p_{ct} = 0.2 \\
-p_{ot} = 0.3 \\
-N = 10 \\
+p_{ct} = 0.2
+$$
+$$
+p_{ot} = 0.3
+$$
+$$
+N = 10
+$$
+$$
 N_{ot} = 2
 $$
 
