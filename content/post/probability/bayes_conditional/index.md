@@ -43,11 +43,11 @@ In this post, we will go over the essentials of conditional probability, its fun
 
 ## Conditional Probability
 
-In real-world situations, events are rarely, if not never completely independent of others. In fact, most machine learning problems start from the premise that a certain outcome can be predicted based on the occurence of other events. If $X$ and $Y$ are two events, $P(X|Y)$ indicates the probability of X given Y, that is, the probability of occurence of X, given that Y has already taken place.
+In real-world situations, events are rarely, if not never completely independent of others. In fact, most machine learning problems start from the premise that a certain outcome can be predicted based on the occurrence of other events. If $X$ and $Y$ are two events, $P(X|Y)$ indicates the probability of X given Y, that is, the probability of occurrence of X, given that Y has already taken place.
 
-If $X$ and $Y$ are **independent**, then the probability of X is not affected by the occurence of $Y$. Therefore, $P(X|Y) = P(X)$.
+If $X$ and $Y$ are **independent**, then the probability of X is not affected by the occurrence of $Y$. Therefore, $P(X|Y) = P(X)$.
 
-On the other hand, if $X$ and $Y$ are **disjoint** or mutually exclusive events, then one will not occur if the occur has already occured. Thus, $P(X|Y) = 0$.
+On the other hand, if $X$ and $Y$ are **disjoint** or mutually exclusive events, then one will not occur if the occur has already occurred. Thus, $P(X|Y) = 0$.
 
 ### Product Rule
 
