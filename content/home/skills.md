@@ -48,7 +48,25 @@ subtitle = ""
   icon = "java"
   icon_pack = "fab"
   name = "Java"
-  description = "60%"
+  description = "80%"
+  
+ [[feature]]
+  icon = "water"
+  icon_pack = "fas"
+  name = "Flood Forecasting and Control"
+  description = "100%"
+  
+ [[feature]]
+  icon = "atom"
+  icon_pack = "fas"
+  name = "Chemistry"
+  description = "80%"
+  
+ [[feature]]
+  icon = "project-diagram"
+  icon_pack = "fas"
+  name = "Process Control"
+  description = "100%"
 
 # Uncomment to use emoji icons.
 # [[feature]]
