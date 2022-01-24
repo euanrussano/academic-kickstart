@@ -1,0 +1,29 @@
+model:
+    name: Example
+    components:
+        inflow:
+            name: inflow
+            Q: q_in
+        storage:
+            name: storage
+            V: V_storage
+            nominal: 4e5
+            min: 2e5
+            max: 6e5
+        pipe:
+            name: release
+            Q: q_release
+            min: 0.0
+            max: 6.5
+        terminal:
+            name: outfall
+    inputs:
+        q_in:
+            fixed: true
+    outputs:
+        - V_storage
+        - q_release
+    connnections:
+        inflow: storage
+        storage: pipe
+        pipe: terminal
