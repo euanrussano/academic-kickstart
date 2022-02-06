@@ -8,7 +8,7 @@ authors: []
 tags: ["Flood Forecasting", "Model Predictive Control"]
 categories: ["Flood Management"]
 date: 2022-01-24T10:01:00
-lastmod: 2022-01-30T10:01:00
+lastmod: 2022-02-06T10:01:00
 featured: false
 draft: false
 
@@ -87,12 +87,37 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
 ```
+The first most basic unit is the Constant, representing values which doesn't change during the simulation/optimization.
 
+```python
+class Constant:
+    """
+    A simple class to represent constants in an optimization problem.
+
+    :param value: The value of the constant. May be a scalar or a vector
+    :type client: list, array, float or int.
+    """
+    def __init__(self, value):
+        self.value = value
+
+    def __call__(self):
+        return self.value
+```
 Definition of the class Variable, which represents one variable in the optimization/simulation problem is as follows:
 
 
 ```python
 class Variable:
+    """
+    This class representa a decision variable in an optimization problem.
+
+    :param index_var: An array that defines the length of the variable.
+    :type client: Iterable
+
+    :param bounds: Bounds of the variable. Use None for no bound. For example physical variables such as mass or temperature (K) may be
+    only positive, so the bounds would be (0.0, None).
+    :type bounds: tuple
+    """
     def __init__(self, index_var=[0], bounds=(None, None)):
         self.value = [100] * len(index_var)
         # create array of Nones with 2 None for each variable
@@ -105,7 +130,7 @@ class Variable:
 
     def get_bounds(self):
         return self.bounds
-
+    
     def  __setitem__(self, key, item):
         '''
         This method is used to set a bound on a index of the variable
@@ -133,11 +158,31 @@ The definition of the constraint object, representing a hard constraint in the o
 
 ```python
 class Constraint:
+    """
+    This class representa a constraint equation in an optimization problem, written in the residual format:
+    f(x) = 0
+
+    :param rule: A python function defining the constraint. The signature must be 
+    .. highlight:: python
+    .. code-block:: python
+
+        def rule(block):
+            f = ....
+            return f
+        ...
+    
+    :type rule: Callable
+
+    :param lb: The lower bound of constraint. Normally for an equality constraint lower and upper bound are set to zero.
+    :type lb: float or int, optional.
+    :param ub: The upper bound of constraint. Normally for an equality constraint lower and upper bound are set to zero.
+    :type ub: float or int, optional.
+    """
     def __init__(self, rule, lb=0, ub=0):
         self.rule = rule
         self.ub = lb
         self.lb = ub
-
+    
     def __call__(self, model):
         return self.rule(model)
 ```
@@ -147,6 +192,10 @@ The Block represents the basic representation of a physical system.
 
 ```python
 class Block:
+    """
+    This class represents a conceptual block, a unit which has some meaning to hold certain variables and constraints within
+    the optimization problem.
+    """
     def __init__(self):
         self.variables = []
         self.constraints = []
@@ -155,7 +204,7 @@ class Block:
 
     def set_parent(self, parent):
         self.parent = parent
-
+    
     def __setattr__(self, name, value):
         if isinstance(value, Variable):
             super().__setattr__(name, value)
@@ -185,6 +234,10 @@ The Composite class represents the higher-level blocks, which contains one or se
 
 ```python
 class Composite:
+    """
+    This class represents a higher-level block, able to "aggregate" multiple blocks. In Composite design pattern, the
+    composite is a high-level block while the Block class is a leaf. 
+    """
     def __init__(self):
         self.variables = []
         self.constraints = []
@@ -218,7 +271,7 @@ class Composite:
             for variable in self.variables:
                 variable.set_value(x[curr_index:curr_index+len(variable.value)])
                 curr_index += len(variable.value)
-
+    
     def get_initial_guess(self):
         if self.parent:
             self.parent.get_initial_guess()
@@ -233,40 +286,17 @@ class Composite:
         # collect the bounds for all variables
         bnds = []
         for variable in self.variables:
-            bnds.extend( variable.get_bounds() )
+            bnds.extend( variable.get_bounds() ) 
 
         return bnds
-
+    
     def get_constraints(self):
         return self.constraints
 
-    def connect(self, inport, outport):
-        inport.set_variable(outport.get_variable())
-```
-
-Define classes for the ports, which connects different blocks
-
-
-```python
-class InPort:
-    def __init__(self):
-        self.variable = lambda: None
-
-    def set_variable(self, variable):
-        self.variable = variable
-
-    def __call__(self):
-        return self.variable()
-
-class OutPort:
-    def __init__(self, variable):
-        self.variable = variable
-
-    def get_variable(self):
-        return self.variable
-
-    def __call__(self):
-        return self.variable()
+    def connect(self, block1, block2):
+        #inport.set_variable(outport.get_variable())
+        block1.outlet.append(block2)
+        block2.inlet.append(block1)
 ```
 
 Define a class `SimulationProblem`to handle simulations using the composed model.
@@ -274,11 +304,25 @@ Define a class `SimulationProblem`to handle simulations using the composed model
 
 ```python
 class SimulationProblem:
+    """
+    Create a simulation problem, i.e a problem with no degrees of freedom (number of variables = number of constraints)
 
+    :param model: The cacao model to be simulated
+    :type model: cacao.generics.Composite
+    """
     def __init__(self, model):
         self.model = model
-
+    
     def run(self, verbose = False):
+        """
+        Perform a simulation of the cacao model along the time steps defined in the model (model.time)
+
+        :param verbose: Set to True to see extended output. Defaults to False.
+        :type verbose: bool, optional
+
+        :return: Simulation results (attribute x contains the actual solution value of the variables).
+        :rtype: scipy.optimize.OptimizeResult
+        """
         obj = lambda x: 0.0
         xGuess = self.model.get_initial_guess()
         bnds = self.model.get_bounds()
@@ -309,42 +353,22 @@ $$
 
 ```python
 model = Composite()
-sys1 = Block()
-sys2 = Block()
 
-sys1.x = Variable()      
-sys2.y = Variable()
+eqs = Block()
+eqs.x = Variable()
+eqs.y = Variable()
 
-sys1.inport_y = InPort()
-sys1.outport_x = OutPort(sys1.x)
+eqs.eq1 = Constraint(lambda block: block.x()+2*block.y()-0)
+eqs.eq2 = Constraint(lambda block: block.x()**2+block.y()**2-1)
 
-sys2.inport_x = InPort()
-sys2.outport_y = OutPort(sys2.y)
-
-
-def eq1(block):
-    x = block.x()
-    y = block.inport_y()
-    return x + 2*y - 0
-sys1.eq1 = Constraint(eq1 )
-
-def eq2(block):
-    x = block.inport_x()
-    y = block.y()
-    return x**2+y**2-1
-sys2.eq1 = Constraint(eq2)
-
-model.sys1 = sys1
-model.sys2 = sys2
-model.connect(sys1.inport_y, sys2.outport_y)
-model.connect(sys2.inport_x, sys1.outport_x)
-
+model.eqs = eqs
 sim = SimulationProblem(model)
-result = sim.run()
 
+result = sim.run()
 model.change_inputs(result.x)
-print('x  = ', model.sys1.x())
-print('y  = ', model.sys2.y())
+
+print('x = ', model.eqs.x())
+print('y = ', model.eqs.y())
 
 ```
 
@@ -422,23 +446,22 @@ model.time = np.linspace(0, 8e4, 50)
 
 # tank model
 tank1 = Block()
-tank1.inport_inflow = InPort()
-tank1.inport_outflow = InPort()
+tank1.inlet = [] # inflows get appended here
+tank1.outlet = [] # outflows get appended here
 tank1.mass = Variable(model.time)
 tank1.height = Variable(model.time)
-tank1.outport_height = OutPort(tank1.height)
 tank1.area = A
 
 tank1.mass[0] = m0 # initial condition
 
 def mass_balance(block):
     dmdt = np.diff(block.mass())/np.diff(block.time)
-    inflow = block.inport_inflow()
-    outflow = block.inport_outflow()
-    if inflow is None:
-        inflow = np.zeros_like(block.time)
-    if outflow is None:
-        outflow = np.zeros_like(block.time)
+    inflow = np.zeros_like(block.time)
+    for block2 in block.inlet:
+        inflow += block2.mass_flow_rate()
+    outflow = np.zeros_like(block.time)
+    for block2 in block.outlet:
+        outflow += block2.mass_flow_rate()
     resid = dmdt - (inflow[1:] - outflow[1:])
     return resid
 
@@ -454,11 +477,12 @@ tank1.volume_height = Constraint(volume_height)
 orifice = Block()
 orifice.mass_flow_rate = Variable(model.time)
 orifice.outport_flow = OutPort(orifice.mass_flow_rate)
-orifice.inport_head = InPort()
+orifice.inlet = [] # upstream object goes here
+orifice.outlet = [] # downstream object goes here
 orifice.area = A_orifice
 
 def outflow(block):
-    h = np.maximum(0.0, block.inport_head()) # height can not be negative due to sqrt
+    h = np.maximum(0.0, block.inlet[0].height()) # height can not be negative due to sqrt
     resid = block.mass_flow_rate() - RHO*block.area*c*np.sqrt(2*g*h)
 
     return resid
@@ -467,8 +491,7 @@ orifice.mech_energy = Constraint(outflow)
 
 model.tank1 = tank1
 model.orifice = orifice
-model.connect(tank1.inport_outflow, orifice.outport_flow)
-model.connect(orifice.inport_head, tank1.outport_height)
+model.connect(tank1, orifice)
 
 sim = SimulationProblem(model)
 result = sim.run()
@@ -525,4 +548,4 @@ plt.grid();
 
 # Conclusion
 
-In this post we have improved the interface of the model by creating classes and using them to hide the internal methods used to perform the simulation. In the next post I want to use inheritance to make the code even more modular and to make it easier to create multiple units with similar physical behavior without repeating the same code. I see you in the next post.
+In this post we have improved the interface of the model by creating classes and using them to hide the internal methods used to perform the simulation. In the next post I want to use inheritance to make the code even more modular and to make it easier to create multiple units with similar physical behavior without repeating the same code. Additionally we will start to use the basic objects developed here to construct higher-level systems, such as the lakes, pumps, turbines, reaches and so forth. I see you in the next post.
