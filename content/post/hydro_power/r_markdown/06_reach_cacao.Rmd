@@ -1,0 +1,148 @@
+---
+# Documentation: [Managing content | Academic](https://sourcethemes.com/academic/docs/managing-content/)
+
+title: "Modelling, Simulation and Control of Hydro-Power System - Part 6"
+subtitle: "Modeling the reaches using Python"
+summary: "In this series I will show the entire process of developing a model, performing simulations and the use of different control techniques for decision support in flood management systems."
+authors: []
+tags: ["Flood Forecasting", "Model Predictive Control"]
+categories: ["Flood Management"]
+date: 2022-01-30T10:01:00
+lastmod: 2022-01-30T10:01:00
+featured: false
+draft: false
+
+# Featured image
+
+# To use, add an image named `featured.jpg/png` to your page's folder.
+
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+
+image:
+ caption: "Image by <a href='https://pixabay.com/users/russmac-756431/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=929406'>Russ McElroy</a> from <a href='https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=929406'>Pixabay</a>"
+ focal_point: "Smart"
+ preview_only: false
+
+# Projects (optional).
+
+# Associate this post with one or more of your projects.
+
+# Simply enter your project's folder or file name without extension.
+
+# E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
+
+# Otherwise, set `projects = []`.
+
+projects: ["Modelling, Simulation and Control of Hydro-power system"]
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(reticulate)
+use_python('/home/euan/.local/share/virtualenvs/cacao_project-WcaHwNE8/bin/python3')
+```
+
+# Modular simulation of the reaches using DAE approach
+
+In the previous posts I have shown how we can use differential algebraic equations to represent physical dynamics of a system. In this post we will continue building upon the code already developed in the previous posts of the series to be able to simulate a river as a series of reaches.
+
+In part 3 of this series of post I've shown that the **De Saint Venant equations** can be used to describe the mass and momentum conservation of a hydrodynamic system. Considering a 1D system, these equations are:
+
+$$
+\frac{\partial A}{\partial t} + \frac{\partial q}{\partial x} - q_{lat} = 0
+$$
+
+$$
+\frac{\partial Q}{\partial t} + \frac{ \partial (\beta Q^2 / A)}{\partial x} +g A\left( \frac{\partial h}{\partial x} + S_f +S_e \right) - \beta q v_x + W_f B = 0
+$$
+Each equation is a partial differential equation (PDE), which means that there are differential terms in respect to different variables. The term $\frac{\partial}{\partial x}$ represents a differential term with respect to the length (spatial) of the river. On the other hand, the term $\frac{\partial}{\partial t}$ represents a differential with respect to the time.
+
+One way of dealing with PDEs is to discretize them in a set of ODEs, by replacing the spatial derivative ($\frac{\partial}{\partial x}$) by a finite difference term. By doing this there is no change in the way we are manipulating the problem as there are already ways of dealing with ODEs.
+
+As an example, suppose we have a river reach section with total length $X$ meters. If I divide this reach in $N$ sections, then $dx$ becomes $\Delta x = \frac{X}{N}$. As described by Petrone (2010), to avoid stiffness and to properly model the system, the mass and momentum conservations are solved together by intersecting each other. In this way a river reach is made of sections, each section consisting in a "node" where mass conservation is solved (obtaining $A_n(t)$) and a "branch" where momentum conservation is solved (obtaining $Q_n(t)$), as shown in the following figure.
+
+![Spatialdiscretization.png](https://drive.google.com/uc?export=view&id=1QckZLs8bmgBkDVvM4dUpa1046Tuf-jJo)
+
+## Basic code
+<details>
+<summary>Click to expand!</summary>
+<script src="https://gist.github.com/euanrussano/ad53fb7b1ba1afb3caa4102eb50f610a.js"></script>
+</details>
+
+```{python echo=FALSE}
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.getcwd(), '..','..')))
+import cacao
+
+from cacao import Composite, SimulationProblem
+from cacao.components import Tank, Orifice, Material, Content
+```
+
+```{python}
+# imports
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+```{python}
+
+model = Composite()
+model.time = np.linspace(0, 8e4, 50)
+
+# some constants
+water = Material(rho=1000)
+
+A = 16 # m2 area of tank
+A_orifice = 5e-4 # m2
+
+content_tank = Content(water, volume=10*A)
+c = 0.62
+
+#m0 = 10*A*RHO
+
+# tank model
+tank1 = Tank( model.time, A, content_tank)
+
+# orifice model
+orifice = Orifice(model.time, A_orifice, c)
+
+model.tank1 = tank1
+model.orifice = orifice
+model.connect(tank1, orifice)
+```
+
+```{python}
+sim = SimulationProblem(model)
+
+result = sim.run()
+model.change_inputs(result.x)
+```
+
+```{python}
+
+def case1_exact(t):
+    A_orifice = 5e-4
+    A = 16.0
+    h0 = 10.0
+    t0 = 0.0
+    c = 0.62
+    g = 9.81
+    h = (np.sqrt(h0) - A_orifice*c*np.sqrt(2*g)*(t-t0)/(2*A))**2
+    return h
+
+h_exact = case1_exact(model.time)
+
+# Mean squared errors
+MSE = np.mean((model.tank1.height() - h_exact)**2)
+
+plt.scatter(model.time, model.tank1.height(), s=80, facecolors='none', edgecolors='r', label='scipy');
+plt.plot( model.time, case1_exact(model.time),'b', label='exact')
+plt.xlabel('time (s)')
+plt.ylabel('height (m)')
+plt.legend()
+plt.title(f'Draining tank. MSE = {MSE:.3e}')
+plt.grid()
+plt.show()
+```

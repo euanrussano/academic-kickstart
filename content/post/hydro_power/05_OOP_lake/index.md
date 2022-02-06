@@ -8,7 +8,7 @@ authors: []
 tags: ["Flood Forecasting", "Model Predictive Control"]
 categories: ["Flood Management"]
 date: 2022-01-24T10:01:00
-lastmod: 2022-01-28T10:01:00
+lastmod: 2022-01-30T10:01:00
 featured: false
 draft: false
 
@@ -96,12 +96,16 @@ class Variable:
     def __init__(self, index_var=[0], bounds=(None, None)):
         self.value = [100] * len(index_var)
         # create array of Nones with 2 None for each variable
-        self.bounds = [(None, None) for i in range(len(index_var))]
+        #bnds = np.array([None for i in range(len(index_var)* 2)])
+        bnds = [bounds for i in range(len(index_var))]
 
+        # reshape to have 2 Nones on last dimension
+        #bnds = bnds.reshape(len(index_var), 2)
+        self.bounds = bnds
 
     def get_bounds(self):
         return self.bounds
-    
+
     def  __setitem__(self, key, item):
         '''
         This method is used to set a bound on a index of the variable
@@ -133,7 +137,7 @@ class Constraint:
         self.rule = rule
         self.ub = lb
         self.lb = ub
-    
+
     def __call__(self, model):
         return self.rule(model)
 ```
@@ -151,7 +155,7 @@ class Block:
 
     def set_parent(self, parent):
         self.parent = parent
-    
+
     def __setattr__(self, name, value):
         if isinstance(value, Variable):
             super().__setattr__(name, value)
@@ -160,6 +164,9 @@ class Block:
             self.add_cons( value, value.lb, value.ub)
         else:
             super().__setattr__(name, value)
+
+    def update_time(self, time_vec):
+        self.time = time_vec
 
     def change_inputs(self, x):
         self.parent.change_inputs(x)
@@ -170,8 +177,7 @@ class Block:
             self.change_inputs(x)
             return constraint(self)
 
-        self.constraints.append( {'type': 'eq', 'fun': cons} ) # 
-
+        self.constraints.append( {'type': 'eq', 'fun': cons} )
 ```
 
 The Composite class represents the higher-level blocks, which contains one or several blocks or also other composite blocks.
@@ -182,6 +188,7 @@ class Composite:
     def __init__(self):
         self.variables = []
         self.constraints = []
+        self.blocks = []
         self.time = [0]
         self.parent=None
 
@@ -193,8 +200,14 @@ class Composite:
             for constraint in block.constraints:
                 self.constraints.append(constraint)
             block.set_parent(self)
-            block.time = self.time        
+            block.update_time( self.time )
+            self.blocks.append( block )
         super().__setattr__(name, value)
+
+    def update_time(self, time_vec):
+        self.time = time_vec
+        for block in self.blocks:
+            block.update_time( time_vec )
 
     def change_inputs(self, x):
         # if this is not a root block, then call recursively the parent until it reaches the root node
@@ -205,7 +218,7 @@ class Composite:
             for variable in self.variables:
                 variable.set_value(x[curr_index:curr_index+len(variable.value)])
                 curr_index += len(variable.value)
-    
+
     def get_initial_guess(self):
         if self.parent:
             self.parent.get_initial_guess()
@@ -220,16 +233,15 @@ class Composite:
         # collect the bounds for all variables
         bnds = []
         for variable in self.variables:
-            bnds.extend( variable.get_bounds() ) 
+            bnds.extend( variable.get_bounds() )
 
         return bnds
-    
+
     def get_constraints(self):
         return self.constraints
 
     def connect(self, inport, outport):
         inport.set_variable(outport.get_variable())
-            
 ```
 
 Define classes for the ports, which connects different blocks
@@ -242,14 +254,14 @@ class InPort:
 
     def set_variable(self, variable):
         self.variable = variable
-    
+
     def __call__(self):
         return self.variable()
 
 class OutPort:
     def __init__(self, variable):
         self.variable = variable
-    
+
     def get_variable(self):
         return self.variable
 
@@ -262,16 +274,16 @@ Define a class `SimulationProblem`to handle simulations using the composed model
 
 ```python
 class SimulationProblem:
-    
+
     def __init__(self, model):
         self.model = model
-    
+
     def run(self, verbose = False):
         obj = lambda x: 0.0
         xGuess = self.model.get_initial_guess()
         bnds = self.model.get_bounds()
         cons = self.model.get_constraints()
-        res = minimize(obj, xGuess, method='SLSQP',bounds=bnds, constraints=cons)
+        res = minimize(obj, xGuess, method='trust-constr',bounds=bnds, constraints=cons)
         if verbose:
             print(res)
         return res
@@ -284,11 +296,14 @@ class SimulationProblem:
 
 Example obtained from [APMonitor](https://apmonitor.com/wiki/index.php/Main/GekkoPythonOptimization).
 
+Equation 1:
 $$
-\begin{align}
-x + 2y &= 0 \\
-x^2 + y^2 &= 1 \\
-\end{align}
+x + 2y = 0
+$$
+
+Equation 2:
+$$
+x^2 + y^2 = 1
 $$
 
 
@@ -333,8 +348,12 @@ print('y  = ', model.sys2.y())
 
 ```
 
-    x  =  [0.89442721]
-    y  =  [-0.44721361]
+    x  =  [0.89442719]
+    y  =  [-0.4472136]
+
+
+    /home/euan/.local/lib/python3.8/site-packages/scipy/optimize/_hessian_update_strategy.py:182: UserWarning: delta_grad == 0.0. Check if the approximated function is linear. If the function is linear better results can be obtained by defining the Hessian as zero instead of using quasi-Newton approximations.
+      warn('delta_grad == 0.0. Check if the approximated '
 
 
 ### Solving a simple differential equation
@@ -376,14 +395,14 @@ plt.plot(model.time, model.sys1.y())
 
 
 
-    [<matplotlib.lines.Line2D at 0x7f1b6dc31950>]
+    [<matplotlib.lines.Line2D at 0x7f762590af70>]
 
 
 
 
-    
+
 ![png](output_19_1.png)
-    
+
 
 
 ## Draining tank (same example from part 4 of this series)
@@ -439,7 +458,7 @@ orifice.inport_head = InPort()
 orifice.area = A_orifice
 
 def outflow(block):
-    h = block.inport_head()
+    h = np.maximum(0.0, block.inport_head()) # height can not be negative due to sqrt
     resid = block.mass_flow_rate() - RHO*block.area*c*np.sqrt(2*g*h)
 
     return resid
@@ -462,13 +481,10 @@ plt.legend()
 plt.grid();
 ```
 
-    /usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:51: RuntimeWarning: invalid value encountered in sqrt
 
 
+![png](output_21_0.png)
 
-    
-![png](output_21_1.png)
-    
 
 
 Compare the simulated results with the analytical (exact) one to confirm that all is working as expected.
@@ -502,9 +518,9 @@ plt.grid();
 ```
 
 
-    
+
 ![png](output_23_0.png)
-    
+
 
 
 # Conclusion
