@@ -425,8 +425,15 @@ Notice here that the value of pearson correlation is 0.97 which indicates high c
 The second value (1.93e-65) is the p-value. It must be a very low value for us to reject the null hypothesis, i,e there is no initial hypothesis of linear correlation. Assuming 1% significance level, we have:
 0.01 >> 1.93e-65 thus we can reject the null hypothesis thus indicating linear correlation between the prediction and observations.
 
-**The Jupyter notebook for this tutorial can be downloaded from [here](./code/linearRegressionNumpy.ipynb)!**
-**If you want it as python code, download it [here](./code/linearRegressionNumpy.py)!**
+<a href="./code/linearRegressionNumpy.ipynb" download>
+  📥 Download the Jupyter notebook here
+</a>
+
+
+<a href="./code/linearRegressionNumpy.py" download>
+  📥 Download the Python code here
+</a>
+
 
 See you next post!
 

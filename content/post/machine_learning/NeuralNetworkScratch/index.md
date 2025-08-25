@@ -398,6 +398,13 @@ pearsonr(y,ypred)
     (array([1.]), array([7.01427805e-12]))
 ```
 
-The Jupyter notebook for this tutorial can be downloaded from [here](./code/neuralNetworkScratch.ipynb)! If you want it as python code, download it [here](./code/neuralNetworkScratch.py)!
+<a href="./code/neuralNetworkScratch.ipynb" download>
+  📥 Download the Jupyter notebook here
+</a>
+
+<a href="./code/neuralNetworkScratch.py" download>
+  📥 Download the Python code here
+</a>
+
 
 See you next post!

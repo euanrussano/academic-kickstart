@@ -149,9 +149,14 @@ plt.plot(x,ypred,'+')
 
 With this example, you have seen how it is possible and not so complicate to build a univariate linear regression with Python. Notice that we only used libraries for plotting and to create pseudo random numbers. Not even Numpy or Scipy was used.
 
-The Jupyter notebook for this tutorial can be downloaded from [here](./code/linearRegressionScratch.ipynb)! If you want it as python code, download it [here](./code/linearRegressionScratch.py)!
+<a href="./code/linearRegressionScratch.ipynb" download>
+  📥 Download the Jupyter notebook here
+</a>
 
-If you want it as python code, download it [here](./code/linearRegressionScratch.py)!
+<a href="./code/linearRegressionScratch.py" download>
+  📥 Download the Python code here
+</a>
+
 
 Thanks for reading this post and see you soon!
 

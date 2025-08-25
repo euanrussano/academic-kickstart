@@ -154,6 +154,8 @@ And the final operating conditions:
 | 5 |1	  | 1199.99 | 1183.99 | 0.0135 | 0.0542 |
 | 6 |2	  | 1191.04 | 1184.04 | 0.00921 | 0.0368 |
 
-**Download the spreadsheet configured [here](./data/20180804optimizationExcel/example_optimization.xlsx)**
+<a href="./code/example_optimization.xlsx" download>
+  📥 Download the Spreadsheet configured here
+</a>
 
 In the next post, I will show you guys how to use other tool to solve the same problem. Do not miss it!
