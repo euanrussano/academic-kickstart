@@ -35,10 +35,19 @@ image:
 
 projects: ["Modelling, Simulation and Control of Hydro-power system"]
 ---
+# Table of Contents
+
++ [Part 1 - System description]({{<  relref "../01"  >}})
++ [Part 2 - Theoretical model of the lakes]({{<  relref "../02"  >}})
++ [Part 3 - Theoretical model of the reaches]({{<  relref "../03"  >}})
++ [Part 4 - Implementing the model of lakes using DAE approach with Python]({{<  relref "../04"  >}})
++ [Part 5 - Improving the DAE approach using OOP with Python]({{<  relref "../05"  >}})
++ [Part 6 - Packing the code in a python library]({{<  relref "../06"  >}})
++ [Part 7 - Model of lakes, ducts, pumps and turbines]({{<  relref "../07"  >}})
 
 ## Overview
 
-In the previous post of this series (see [here](/post/hydro_power/01system_description)), I showed an overview of the system we intend to model and investigate. In this post I will show how to develop a simple yet effective mathematical representation of the series of lakes in the hydro-power system.
+In the previous post of this series (see [here](/post/hydro_power/01)), I showed an overview of the system we intend to model and investigate. In this post I will show how to develop a simple yet effective mathematical representation of the series of lakes in the hydro-power system.
 
 The main use of these lakes is to work as a battery, i.e energy storage. At times when energy is at low demand, water can be pumped from the river to the lakes and stored there as potential energy. When there is a greater demand and only the level of water from the river can not provide enough energy, water can flow from the lakes to the river through turbines, using its kinetic energy to generate extra energy. Notice that this process is, in a real-world case, not 100% efficient. This means that more energy is needed to pump the water from the river to the lakes, then can be extracted by turbining from the lakes to the river. Yet, it can be a useful technique to keep the balance in energy generation, and also to redirect volume of water when its excess can cause floods downstream.
 

@@ -36,9 +36,19 @@ image:
 projects: ["Modelling, Simulation and Control of Hydro-power system"]
 ---
 
+# Table of Contents
+
++ [Part 1 - System description]({{<  relref "../01"  >}})
++ [Part 2 - Theoretical model of the lakes]({{<  relref "../02"  >}})
++ [Part 3 - Theoretical model of the reaches]({{<  relref "../03"  >}})
++ [Part 4 - Implementing the model of lakes using DAE approach with Python]({{<  relref "../04"  >}})
++ [Part 5 - Improving the DAE approach using OOP with Python]({{<  relref "../05"  >}})
++ [Part 6 - Packing the code in a python library]({{<  relref "../06"  >}})
++ [Part 7 - Model of lakes, ducts, pumps and turbines]({{<  relref "../07"  >}})
+
 ## Overview
 
-In the previous post of this series (see [here](/post/hydro_power/02lake_modelling)), I showed how to develop a mathematical representation of the lake component in the hydro-power system. In this post I will present a one-dimensional mathematical model of the reaches.
+In the previous post of this series (see [here](/post/hydro_power/02)), I showed how to develop a mathematical representation of the lake component in the hydro-power system. In this post I will present a one-dimensional mathematical model of the reaches.
 
 As commented in a previous post, a reach is a section of a river, with more or less uniform geometry, such that it can be interpreted as one component in the complete model.
 
