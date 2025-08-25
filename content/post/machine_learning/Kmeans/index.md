@@ -394,5 +394,5 @@ ax.scatter(X[classes == 2,0],X[classes == 2,1],X[classes == 2,2])
 ![png](./img/output_34_1.png)
 
 
-**Download the Jupyter notebook of this post <a href="/code/kmeans.ipynb">here!</a>**
-**Download the Python code of this post <a href="/code/kmeans.py">here!</a>**
+**Download the Jupyter notebook of this post [here](./code/kmeans.ipynb)!** 
+**Download the Python code of this post [here](./code/kmeans.py)!**

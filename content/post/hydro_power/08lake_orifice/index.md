@@ -1,7 +1,7 @@
 ---
 # Documentation: [Managing content | Academic](https://sourcethemes.com/academic/docs/managing-content/)
 
-title: "Modelling, Simulation and Control of Hydro-Power System - Part 7"
+title: "Modelling, Simulation and Control of Hydro-Power System - Part 8"
 subtitle: "Model of lakes, ducts, pumps and turbines"
 summary: "In this series I will show the entire process of developing a model, performing simulations and the use of different control techniques for decision support in flood management systems."
 authors: []

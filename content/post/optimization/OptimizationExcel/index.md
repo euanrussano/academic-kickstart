@@ -1,12 +1,19 @@
 ---
 title: Using MS Excel Solver for Process Optimization
-date: 2018-08-04 01:00:00
-tags: 
- - Excel
- - Process Optimization
- - Solver
+summary: "In this post I will show how to use MS Excel Solver to solve optimization problems."
+authors: []
+date: 2018-08-04T01:00:00
+lastmod: 2018-08-04T01:00:00
+tags: ["Excel", "Process Optimization", "Solver"]
+categories: ["Optimization"]
+featured: false
+draft: false
+
+image:
+ caption: "Process Optimization"
+ focal_point: "Smart"
+ preview_only: false
 ---
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
 A common problem which many engineers face on their jobs is process optimization. How to maximize a profit or how to minimize costs of a determined process so as to make it the most profitable possible? There is a diversity of mathematical techniques which can be used to solve such problem. Most of these techniques differ in its applicability when a problem is linear or non-linear.
 
@@ -22,7 +29,7 @@ For the purpose of this post, consider the following example extracted from COQ-
 
 **Example 1.2:** In the process of extraction using pure solvent, as illustrated below, one desires to find the operating condition with the best profit possible.
 
-![Extraction Process](/images/20180804optimizationExcel/extraction_process.png "Extraction Process")
+![Extraction Process](./img/extraction_process.png "Extraction Process")
 
 Where *Wi* and *W'i* are solvent mass flow rates, *F* is water mass flow rate, *xi* is the solute mass per mass unit of water and yi is the solute mass per mass unit of solvent. An economic analysis of the problem conducts to the following profit expression:
 
@@ -38,33 +45,33 @@ Where Os is the solute price while in the extract, Px is the price of pure solve
 
 Solute Mass Balance:
 
-\begin{equation}
+$$
 F x_0 – W'_1 y_1 – F x_1 = 0
-\end{equation}
+$$
 
-\begin{equation}
+$$
 F x_1 – W’_2 y_2 – F x_2 = 0
-\end{equation}
+$$
 
 Solvent Mass Balance:
 
-\begin{equation}
+$$
 W_1 – W’_1 – s F = 0
-\end{equation}
+$$
 
-\begin{equation}
+$$
 W_2 + s F – W’_2 – s F = 0
-\end{equation}
+$$
 
 Equilibrium relations:
 
-\begin{equation}
+$$
 y_1 = m x_1
-\end{equation}
+$$
 
-\begin{equation}
+$$
 y_2 = m x_2
-\end{equation}
+$$
 
 Where $$s$$ is the solubility of the solvent in water(solvent mass / mass of water) and m is the equilibrium constant between phases. Therefore, given $$F$$, $$x_0$$, $$s$$, $$m$$, $$Ps$$ and $$Px$$, the problem of extracting the solute from water in the most profitable manner consists in maximizing L as a function of the operating conditions.
 
@@ -127,7 +134,7 @@ The values in the cell are not inserted, but automatically calculated by excel u
 
 After configuring everything, it is time to proceed to optimization. To do that, start Solver (it is located in the tab Data in Excel. If you do not find it, it is necessary to configure it in Excel Options. Write a comment if you need any help with that). The solver screen is as shown below.
  
-![Solver Window](/images/20180804optimizationExcel/solver_screen.png "Solver Window")
+![Solver Window](./img/solver_screen.png "Solver Window")
 
 Make sure you add the current optimization cell, chose the "Max" radio button and add the constraints with the Add button and your Solver window should look the same as the figure above. Then simply click Solve and see how the operating conditions change, in such a way that the constraints are almost zero (or zero exactly) and the Profit variable is maximized. You may slightly change the operating conditions to check if the profit is really the maximum possible.
 
@@ -147,10 +154,6 @@ And the final operating conditions:
 | 5 |1	  | 1199.99 | 1183.99 | 0.0135 | 0.0542 |
 | 6 |2	  | 1191.04 | 1184.04 | 0.00921 | 0.0368 |
 
-**Download the spreadsheet configured <a href="/data/20180804optimizationExcel/example_optimization.xlsx">here!</a>**
+**Download the spreadsheet configured [here](./data/20180804optimizationExcel/example_optimization.xlsx)**
 
 In the next post, I will show you guys how to use other tool to solve the same problem. Do not miss it!
-
-Regards,
-Euan
-

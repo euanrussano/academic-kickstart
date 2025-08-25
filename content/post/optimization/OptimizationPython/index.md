@@ -156,8 +156,7 @@ Out[]:
 
 You can compare these values with those obtained in Excel and you will see that they are very similar, if not the same. The same principle applied here can be used for the most diverse optimization problems.
 
-**Download the Jupyter notebook of this post [here](./code/20180804optimizationPythonipynb)!** 
-
-**Download the Python code of this post [here](./code/20180804optimizationPython.py)!**
+**Download the Jupyter notebook of this post [here](./code/.ipynb)!** **Download the Python code of this post [here](./code/index.py)!** **Download the Jupyter notebook of this post [here](./code/index.ipynb)!** **Download the Python code of this post [here](./code/index.py)!** **Download the Jupyter notebook of this post <a href="/data/20180804optimizationPython/20180804optimizationPython.ipynb">here!</a>**
+**Download the Python code of this post <a href="/data/20180804optimizationPython/20180804optimizationPython.py">here!</a>**
 
 Until the next post!

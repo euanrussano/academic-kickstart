@@ -1,13 +1,16 @@
 ---
 title: Tutorial":" Implement a Neural Network from Scratch with Python
-date: 2019-08-21 01:00:00
-tag: 
- - Neural Network
- - Python
- - Machine Learning
----
+date: 2019-08-21T01:00:00
+lastmod: 2019-08-21T01:00:00
+tags: ["Python", "Machine Learning", "Neural Network"]
+categories: ["Machine Learning"]
+draft: false
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+image:
+ caption: "Neural Network"
+ focal_point: "Smart"
+ preview_only: false
+---
 
 In this tutorial, we will see how to write code to run a neural network model that can be used for regression or classification problems.
 We will **NOT** use fancy libraries like Keras, Pytorch or Tensorflow. Instead the neural network will be implemented using only numpy for numerical computation and scipy for the training process.
@@ -51,12 +54,12 @@ data
 
 
 
-
+```
     array([[1., 0., 1.],
            [0., 1., 0.],
            [1., 1., 0.],
            [0., 0., 1.]])
-
+```
 
 
 Separate the columns, using the first two for the input `X`, while the last column is considered the output `y`.
@@ -69,6 +72,7 @@ print(X)
 print(y)
 ```
 
+```
     [[1. 0.]
 	[0. 1.]
 	 [1. 1.]
@@ -77,7 +81,7 @@ print(y)
      [0.]
      [0.]
      [1.]]
-    
+```  
 
 ## Structuring the Neural Network
 
@@ -106,11 +110,12 @@ The following cell is used to test the function above for correctnes fo the resu
 w = np.array([0.5,-0.5]).reshape(-1,1)
 print(sigmoid(w,X))
 ```
-
+```
     [[0.37754067]
      [0.62245933]
      [0.5       ]
      [0.5       ]]
+```
     
 
 We will implement the neural network using an Object-Oriented approach. This means we will write a class which will emulathe the model, and it will contain the functions to optimize its parameters and to test it, i.e perform predictions. Start by writing the class definition using the keyword `class` and the initialization function, contained in the `__init__()` function.
@@ -142,11 +147,12 @@ print(net.inputWeights)
 print(net.outputWeights)
 ```
 
+```
     [[0.90518084 0.71031147]
      [0.75555662 0.19589718]]
     [[0.00156605]
      [0.64047559]]
-    
+``` 
 
 Notice that the values of weights, printed above, are simple generated randomly and do not hold any meaning up to this point.
 
@@ -158,14 +164,12 @@ We can obtain the output of the hidden layer by applying the `sigmoid` function 
 sigmoid(net.inputWeights,X)
 ```
 
-
-
-
+```
     array([[0.287987  , 0.32953002],
            [0.31961175, 0.45118172],
            [0.15966303, 0.28777629],
            [0.5       , 0.5       ]])
-
+```
 
 
 To extend it, the output of the complete network is obtained by doing matrix multiplication of the `outputWeights` with the output of the hidden layer, shown above.
@@ -176,14 +180,12 @@ To extend it, the output of the complete network is obtained by doing matrix mul
 sigmoid(net.inputWeights,X).dot(net.outputWeights)
 ```
 
-
-
-
+```
     array([[0.21150694],
            [0.28947141],
            [0.18456373],
            [0.32102082]])
-
+```
 
 
 Let's make this code a bit more permanent, by writing a function `predict`, which we will use to generate the output of the neural network given an array of input. This function can be appended to the class `NeuralNetwork`, by using the `setattr` function of Python. Notice that this function work in the following way:
@@ -221,13 +223,13 @@ net.predict(X)
 ```
 
 
-
+```
 
     array([[0.21150694],
            [0.28947141],
            [0.18456373],
            [0.32102082]])
-
+```
 
 
 ## Training the neural network
@@ -333,9 +335,9 @@ net.cost(np.concatenate([net.inputWeights,net.outputWeights.T]))
 
 
 
-
+```
     1.2005915066240083
-
+```
 
 
 Now we can call the fit() method on the neural network to find the optimum parameters that will show the minimum error of the predictions and observations. This is done in the following code. Notice that the output shown is the result from the minimize function on scipy.optimize.
@@ -346,7 +348,7 @@ net.fit()
 ```
 
 
-
+```
 
           fun: 2.255136144862212e-09
      hess_inv: array([[ 4.14164529e+03,  7.06430001e+03,  1.78716005e+05,
@@ -371,7 +373,7 @@ net.fit()
       success: True
             x: array([ 6.56030353e-01, -4.35259814e-03,  7.77890879e+00,  1.11330054e+01,
             1.36193289e-02,  1.98637937e+00])
-
+```
 
 
 To finish the exercise, let's generate a vector of predictions using the optimum parameters and compare it with the observations. We test how good this prediction is by using the pearson coefficient, also from scipy package.
@@ -392,9 +394,10 @@ pearsonr(y,ypred)
 
 
 
-
+```
     (array([1.]), array([7.01427805e-12]))
+```
 
-The Jupyter notebook for this tutorial can be downloaded from <a href="/data/20190820neuralNetworkScratch/neuralNetworkScratch.ipynb">here</a>!
-If you want it as python code, download it <a href="/data/20190820neuralNetworkScratch/neuralNetworkScratch.py">here</a>!
+The Jupyter notebook for this tutorial can be downloaded from [here](./code/neuralNetworkScratch.ipynb)! If you want it as python code, download it [here](./code/neuralNetworkScratch.py)!
+
 See you next post!

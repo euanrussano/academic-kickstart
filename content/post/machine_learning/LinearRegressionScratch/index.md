@@ -1,14 +1,17 @@
 ---
 title: Linear Regression from Scratch with Python 
-date: 2019-08-09 01:00:00
-tag: 
- - Linear Regression
- - Python
- - Gradient Descent
- - Machine Learning
----
+summary: "In this post I will show how to implement a linear regression model from scratch (no fancy libraries) using Python."
+date: 2019-08-09T01:00:00
+lastmod: 2019-08-09T01:00:00
+tags: ["Python", "Machine Learning", "Linear Regression", "Gradient Descent"]
+categories: ["Machine Learning"]
+draft: false
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+image:
+ caption: "Linear Regression"
+ focal_point: "Smart"
+ preview_only: false
+---
 
 Among the variety of models available in Machine Learning, most people will agree that **Linear Regression** is the most basic and simple one. However, this model incorporates almost all of the basic concepts that are required to understand **Machine Learning** modelling.
 
@@ -70,11 +73,11 @@ print(y)
 plt.plot(x,y,'o')
 ```
 
-![Generated data plot](/images/20190809linearRegressionScratch/fig1.png "Generated dataset.")
+![Generated data plot](./img/fig1.png "Generated dataset.")
 
 Assume an initial guess for the parameters of the linear regression model. From this value, we will iterate until the optimum values are found. Let's assume that initially $\theta_0 = 0.5$ and $\theta_1 = 0$, which basically creates a flat (horizontal) line at y = 0.5.
 
-![Initial linear model](/images/20190809linearRegressionScratch/fig2.png "Initial linear model when theta0 = 0.5 and theta1 = 0.")
+![Initial linear model](./img/fig2.png "Initial linear model when theta0 = 0.5 and theta1 = 0.")
 
 It is possible to adjust the parameters of the linear regression model analytically, i.e with no iteration but using an equation. This analytical method is known as the Least Squares Method or the Normal Equation method. However, since this technique os almost only applicable to linear regression, I chooe to use the iterative approach, because it is more general and will give a better sense of how machine learning models are usually trained.
 
@@ -131,7 +134,7 @@ for epoch in range(epochs):
 plt.plot(J)
 ```
 
-![Cost Function](/images/20190809linearRegressionScratch/fig3.png "Cost Function evolution.")
+![Cost Function](./img/fig3.png "Cost Function evolution.")
 
 Notice how the cost function $J$ shown above drastically reduces initially, reaching a relatively stable plateau. That is normally expected when training a model. The plateau occurs because of convergence to the minimum is near to be satisfied, so the iteration process may be interrupted at a determined point of this process without losing too much accuracy.
 
@@ -142,12 +145,13 @@ plt.plot(x,y,'o')
 plt.plot(x,ypred,'+')
 ```
 
-![Cost Function](/images/20190809linearRegressionScratch/fig4.png "Predicted (+) and Observed (o) values.")
+![Cost Function](./img/fig4.png "Predicted (+) and Observed (o) values.")
 
 With this example, you have seen how it is possible and not so complicate to build a univariate linear regression with Python. Notice that we only used libraries for plotting and to create pseudo random numbers. Not even Numpy or Scipy was used.
 
-The Jupyter notebook for this tutorial can be downloaded from <a href="/data/20190809linearRegressionScratch/LinearRegressionScratch.ipynb">here</a>!
-If you want it as python code, download it <a href="/data/20190809linearRegressionScratch/LinearRegressionScratch.py">here</a>!
+The Jupyter notebook for this tutorial can be downloaded from [here](./code/linearRegressionScratch.ipynb)! If you want it as python code, download it [here](./code/linearRegressionScratch.py)!
+
+If you want it as python code, download it [here](./code/linearRegressionScratch.py)!
 
 Thanks for reading this post and see you soon!
 
