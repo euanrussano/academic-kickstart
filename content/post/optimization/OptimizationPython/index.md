@@ -153,11 +153,11 @@ Out[]:
 
 You can compare these values with those obtained in Excel and you will see that they are very similar, if not the same. The same principle applied here can be used for the most diverse optimization problems.
 
-<a href="{{< resourceRelURL "code/20180804optimizationPython.ipynb" >}}" download>
+<a href="./code/20180804optimizationPython.ipynb" download>
   📥 Download the Jupyter notebook here
 </a>
 
-<a href="{{< resourceRelURL "code/20180804optimizationPython.py" >}}" download>
+<a href="./code/20180804optimizationPython.py" download>
   📥 Download the Python code here
 </a>
 Until the next post!
