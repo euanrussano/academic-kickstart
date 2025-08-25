@@ -15,9 +15,6 @@ image:
  preview_only: false
 ---
 
-
-![Python logo](./img/python-logo.png)
-
 Hello!
 
 In the last post I demonstrated how to use MS Excel software and its Solver tool to find the optimal operating point in a process.
@@ -156,8 +153,11 @@ Out[]:
 
 You can compare these values with those obtained in Excel and you will see that they are very similar, if not the same. The same principle applied here can be used for the most diverse optimization problems.
 
-Download the Jupyter notebook <a href="./code/20180804optimizationPython.ipynb" download>here</a>
+<a href='{{< resourceRelURL "code/20180804optimizationPython.ipynb" >}}' download>
+  📥 Download the Jupyter notebook here
+</a>
 
-Download the Python code<a href="./code/20180804optimizationPython.py" download>here</a>
-
+<a href='{{< resourceRelURL "code/20180804optimizationPython.py" >}}' download>
+  📥 Download the Python code here
+</a>
 Until the next post!
