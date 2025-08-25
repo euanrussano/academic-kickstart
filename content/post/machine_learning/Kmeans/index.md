@@ -8,9 +8,13 @@ date: 2019-08-13T12:00:00
 lastmod: 2019-08-13T12:00:00
 featured: false
 draft: false
----
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+image:
+ caption: "KMeans Clustering"
+ focal_point: "Smart"
+ preview_only: false
+
+---
 
 Hello! In this post I will teach you how to do a simple data classification using the KMeans algorithm. We will go through the concept of Kmeans first, and then dive into the Python code used to perform the classification.
 
@@ -64,7 +68,7 @@ X[50:100, :] = X1
 plt.scatter(X[ : , 0], X[ :, 1], s = 20, c = 'k')
 ```
 
-![png](/img/output_4_1.png)
+![png](./img/output_4_1.png)
 
 
 Now we place the centroids randomly in the feature space above (2D), by using the `rand()` function from Numpy.
@@ -92,7 +96,7 @@ plt.scatter(centroids[:,0],centroids[:,1],s = 50, c = 'b',marker = '+')
 ```
 
 
-![png](/img/output_8_1.png)
+![png](./img/output_8_1.png)
 
 
 Using the function `np.linalg.norm()` from numpy we can calculate the Euclidean distance from each point to each centroid. For instance, the following code is used to calculate the distances from all the points stored in the variable $X$ to the first centroid. Then we print the first 10 distances.
@@ -187,15 +191,7 @@ plt.scatter(X[classes == 0, 0], X[classes == 0, 1], s = 20, c = 'b')
 plt.scatter(X[classes == 1, 0], X[classes == 1, 1], s = 20, c = 'r')
 ```
 
-
-
-
-    <matplotlib.collections.PathCollection at 0x7f36e03f6c18>
-
-
-
-
-![png](/img/output_16_1.png)
+![png](./img/output_16_1.png)
 
 
 Now we update the position of each centroid, by calculating it at the mean position of the cluster. For instance, if a certain point has the points (1,0), (2,1) and (0.5,0.5), then the updated position of the centroid is:
@@ -237,7 +233,7 @@ plt.scatter(centroids[:,0],centroids[:,1],s = 50, c = 'k',marker = '+')
 
 
 
-![png](/img/output_20_1.png)
+![png](./img/output_20_1.png)
 
 
 Then the complete training consists of running the same update over and over again, until the positions of the centroid stop changing significantly. In the following code, we define a class `KMeans` aggregating all the code explained above and runnign the training until convergence. The initialization consists in settinga a number `k` of classes. Then the method `train()` performs the training over a dataset, while the method `predict()` labels a new point according the positioning of the centroids stored in the object.
@@ -316,7 +312,7 @@ plt.scatter(kmeans.centroids[:,0],kmeans.centroids[:,1],s = 50, c = 'k',marker =
 
 
 
-![png](/img/output_28_1.png)
+![png](./img/output_28_1.png)
 
 
 Notice that it converged to a meaningful classification. The centroid is placed in the average position of each part of the dataset initially created, whith clear separation between each class.
@@ -346,7 +342,7 @@ ax.scatter(X[:,0],X[:,1],X[:,2])
 
 
 
-![png](/img/output_30_1.png)
+![png](./img/output_30_1.png)
 
 
 
@@ -395,7 +391,7 @@ ax.scatter(X[classes == 1,0],X[classes == 1,1],X[classes == 1,2])
 ax.scatter(X[classes == 2,0],X[classes == 2,1],X[classes == 2,2])
 ```
 
-![png](/img/output_34_1.png)
+![png](./img/output_34_1.png)
 
 
 **Download the Jupyter notebook of this post <a href="/code/kmeans.ipynb">here!</a>**
